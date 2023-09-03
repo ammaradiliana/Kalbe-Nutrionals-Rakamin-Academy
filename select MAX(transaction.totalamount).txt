@@ -1,0 +1,6 @@
+select MAX(transaction.totalamount) ,productid, "Product Name" from (
+	select SUM(transaction.totalamount)as total_totalamount, transaction.productid as productid, product."Product Name" as "Product Name" from transaction join product on product.productid = transaction.productid group by product."Product Name", transaction.productid
+)as total group by productid, "Product Name";
+
+
+select productid, sum(totalamount) as totalamount from "transaction" group by productid;
